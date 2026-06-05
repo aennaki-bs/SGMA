@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            direction: rtl;
+            padding: 30px;
+            font-size: 13px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+
+        .header .logo-text {
+            font-size: 11px;
+            color: #333;
+        }
+
+        .header .title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            text-decoration: underline;
+        }
+
+        .student-info {
+            margin: 15px 0;
+        }
+
+        .student-info p {
+            margin: 4px 0;
+        }
+
+        .student-info strong {
+            display: inline-block;
+            width: 140px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #333;
+            padding: 5px 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #e8e8e8;
+            font-weight: bold;
+        }
+
+        td:first-child {
+            text-align: right;
+        }
+
+        .section-title {
+            background: #d0d0d0;
+            font-weight: bold;
+            text-align: center;
+            padding: 4px;
+            border: 1px solid #333;
+            margin-top: 10px;
+        }
+
+        .summary-table {
+            width: 40%;
+            margin-right: auto;
+        }
+
+        .summary-table td {
+            text-align: center;
+        }
+
+        .footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .stamp {
+            font-size: 14px;
+            font-weight: bold;
+
+            color: {
+                % if stamp and 'مكررة' in stamp %
+            }
+
+            red {
+                % else %
+            }
+
+            green {
+                % endif %
+            }
+
+            ;
+            border: 2px solid currentColor;
+            padding: 5px 10px;
+            display: inline-block;
+            transform: rotate(-10deg);
+        }
+
+        .serial {
+            font-size: 10px;
+            color: #666;
+        }
+
+        @media print {
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo-text">
+            FSJES Aïn Chock<br>
+            FACULTÉ DES SCIENCES JURIDIQUES, ÉCONOMIQUES ET SOCIALES AÏN CHOCK<br>
+            UNIVERSITÉ HASSAN II DE CASABLANCA
+        </div>
+        <div class="title">
+            بيان النقط لمواد السنة {{ student.study_year }}
+            {% if student.branch %}من {{ student.branch }}{% endif %}
+        </div>
+    </div>
+
+    <div class="student-info">
+        <p><strong>الاسم و النسب:</strong> {{ student.full_name }}</p>
+        <p><strong>رقم الامتحان:</strong> {{ student.exam_number }}</p>
+        {% if student.birth_date %}<p><strong>المزداد بتاريخ:</strong> {{ student.birth_date.strftime('%d/%m/%Y') }}</p>
+        {% endif %}
+        {% if student.birth_place %}<p><strong>مكان الميلاد:</strong> {{ student.birth_place }}</p>{% endif %}
+        <p><strong>السنة الجامعية:</strong> {{ student.academic_year }}</p>
+        {% if student.session %}<p><strong>الدورة:</strong> {{ student.session }}</p>{% endif %}
+    </div>
+
+    {% if grades_written %}
+    <div class="section-title">المواد الكتابية</div>
+    <table>
+        <thead>
+            <tr>
+                <th>المواد الكتابية</th>
+                <th>النقطة</th>
+                <th>نتيجة الكتابي</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for g in grades_written %}
+            <tr>
+                <td>{{ g.name }}</td>
+                <td>{{ g.note }}</td>
+                <td>{{ g.written_result or '' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    {% if grades_oral %}
+    <div class="section-title">المواد الشفهية</div>
+    <table>
+        <thead>
+            <tr>
+                <th>المواد الشفهية</th>
+                <th>النقطة النهائية</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for g in grades_oral %}
+            <tr>
+                <td>{{ g.name }}</td>
+                <td>{{ g.note }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    {% if summary %}
+    <br>
+    <table class="summary-table">
+        <tr>
+            <td>مجموع الكتابي</td>
+            <td>{{ summary.total_written or '' }}</td>
+        </tr>
+        <tr>
+            <td>مجموع الشفوي</td>
+            <td>{{ summary.total_oral or '' }}</td>
+        </tr>
+        <tr>
+            <td>المجموع العام</td>
+            <td>{{ summary.total_general or '' }}</td>
+        </tr>
+        <tr>
+            <td>المعدل</td>
+            <td>{{ summary.average or '' }}</td>
+        </tr>
+        <tr>
+            <td>النتيجة العامة</td>
+            <td>{{ summary.general_result or '' }}</td>
+        </tr>
+        <tr>
+            <td>الميزة</td>
+            <td>{{ summary.mention or '' }}</td>
+        </tr>
+    </table>
+    {% endif %}
+
+    <div class="footer">
+        <div>الدارالبيضاء، في {{ print_date }}</div>
+        <div>
+            {% if stamp %}<div class="stamp">{{ stamp }}</div>{% endif %}
+            {% if serial %}<div class="serial">{{ serial }}</div>{% endif %}
+        </div>
+    </div>
+
+    {% if not is_preview %}
+    <script>window.onload = function () { window.print(); }</script>
+    {% endif %}
+</body>
+
+</html>
