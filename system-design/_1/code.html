@@ -1,0 +1,214 @@
+<!DOCTYPE html><html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>تسجيل الدخول - النسخة المتقدمة</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#87898a",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#1f2223",
+                        "surface-tint": "#465f88",
+                        "primary": "#000a1e",
+                        "on-secondary-container": "#785a1a",
+                        "on-primary-container": "#708ab5",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-tertiary-fixed": "#191c1d",
+                        "on-background": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "inverse-primary": "#aec7f6",
+                        "on-surface": "#1c1b1b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#44474e",
+                        "tertiary": "#090b0c",
+                        "primary-container": "#002147",
+                        "surface": "#fcf9f8",
+                        "secondary-container": "#fed488",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001b3d",
+                        "inverse-surface": "#313030",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary": "#775a19",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "outline-variant": "#c4c6cf",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "secondary-fixed-dim": "#e9c176",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e1e3e4",
+                        "outline": "#74777f",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-low": "#f6f3f2",
+                        "primary-fixed": "#d6e3ff",
+                        "on-secondary-fixed": "#261900",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#aec7f6",
+                        "on-error-container": "#93000a",
+                        "background": "#fcf9f8",
+                        "surface-container-high": "#eae7e7",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "surface-container": "#f0eded",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "md": "24px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "xl": "80px",
+                        "lg": "48px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Noto Sans"],
+                        "arabic-body": ["Noto Naskh Arabic"],
+                        "arabic-headline": ["Noto Naskh Arabic"],
+                        "display-lg-mobile": ["Noto Sans"],
+                        "body-lg": ["Noto Sans"],
+                        "headline-md": ["Noto Sans"],
+                        "label-sm": ["Noto Sans"],
+                        "display-lg": ["Noto Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "arabic-body": ["18px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "arabic-headline": ["26px", { "lineHeight": "44px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(196, 198, 207, 0.3);
+        }
+        .executive-shadow {
+            box-shadow: 0px 4px 20px rgba(0, 33, 71, 0.08);
+        }
+        .input-glow:focus-within {
+            box-shadow: 0 0 0 2px #775a19;
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center font-arabic-body">
+<div class="w-full max-w-[1440px] h-screen md:h-[921px] md:max-h-[900px] flex flex-col md:flex-row bg-surface rounded-none md:rounded-xl overflow-hidden executive-shadow mx-auto">
+<!-- Form Section (Left side in RTL) -->
+<div class="w-full md:w-1/2 lg:w-5/12 flex flex-col justify-center p-margin-mobile md:p-margin-desktop bg-surface z-10">
+<!-- Logo & Brand -->
+<div class="mb-lg flex flex-col items-start">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-[40px] text-primary" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<h1 class="font-arabic-headline text-arabic-headline text-primary m-0">FSJES عين الشق</h1>
+</div>
+<p class="font-arabic-body text-arabic-body text-on-surface-variant m-0">البوابة الأكاديمية للإدارة العليا</p>
+</div>
+<!-- Header -->
+<div class="mb-md">
+<h2 class="font-arabic-headline text-[32px] font-bold text-primary mb-xs">تسجيل الدخول</h2>
+<p class="font-arabic-body text-arabic-body text-on-surface-variant">الرجاء إدخال بيانات الاعتماد الخاصة بك للوصول إلى النظام.</p>
+</div>
+<!-- Login Form -->
+<form class="space-y-md">
+<!-- Email Input -->
+<div class="space-y-xs relative group">
+<label class="font-label-sm text-label-sm text-on-surface-variant block" for="email">البريد الإلكتروني أو اسم المستخدم</label>
+<div class="relative flex items-center bg-surface-container-low rounded-lg border-b border-outline-variant transition-all duration-300 input-glow group-hover:bg-surface-container">
+<span class="material-symbols-outlined absolute right-sm text-outline">person</span>
+<input class="w-full bg-transparent border-none py-sm pr-10 pl-sm font-body-md text-body-md text-on-surface focus:ring-0 placeholder:text-outline/50" dir="ltr" id="email" placeholder="admin@fsjes-cu.ma" required="" type="email">
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-xs relative group">
+<div class="flex justify-between items-center w-full">
+<label class="font-label-sm text-label-sm text-on-surface-variant block" for="password">كلمة المرور</label>
+<a class="font-label-sm text-label-sm text-secondary hover:text-secondary-container transition-colors" href="#">نسيت كلمة المرور؟</a>
+</div>
+<div class="relative flex items-center bg-surface-container-low rounded-lg border-b border-outline-variant transition-all duration-300 input-glow group-hover:bg-surface-container">
+<span class="material-symbols-outlined absolute right-sm text-outline">lock</span>
+<input class="w-full bg-transparent border-none py-sm pr-10 pl-10 font-body-md text-body-md text-on-surface focus:ring-0 placeholder:text-outline/50" dir="ltr" id="password" placeholder="••••••••" required="" type="password">
+<button class="absolute left-sm text-outline hover:text-on-surface transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Remember Me & Language -->
+<div class="flex justify-between items-center pt-xs">
+<label class="flex items-center gap-sm cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5 border-2 border-outline rounded bg-surface-container-lowest group-hover:border-primary transition-colors">
+<input class="peer opacity-0 absolute w-full h-full cursor-pointer" type="checkbox">
+<span class="material-symbols-outlined text-[16px] text-on-primary opacity-0 peer-checked:opacity-100 transition-opacity bg-primary absolute inset-0 rounded-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">تذكرني</span>
+</label>
+<div class="flex gap-2">
+<button class="font-label-sm text-label-sm text-primary font-bold px-xs border-b-2 border-secondary" type="button">AR</button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" type="button">FR</button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" type="button">EN</button>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary text-on-primary font-arabic-headline text-[20px] font-semibold py-sm rounded-lg hover:bg-primary-container transition-colors duration-300 executive-shadow mt-md flex items-center justify-center gap-sm group" type="submit">
+<span>دخول</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-hover:-translate-x-1 rtl:group-hover:translate-x-1">arrow_forward</span>
+</button>
+<!-- Divider -->
+<div class="relative flex items-center py-sm">
+<div class="flex-grow border-t border-outline-variant/50"></div>
+<span class="flex-shrink-0 mx-4 font-label-sm text-label-sm text-outline">أو</span>
+<div class="flex-grow border-t border-outline-variant/50"></div>
+</div>
+<!-- Secondary Action -->
+<button class="w-full glass-panel border border-secondary text-secondary font-arabic-headline text-[18px] font-semibold py-sm rounded-lg hover:bg-surface-variant transition-colors duration-300 flex items-center justify-center gap-sm" type="button">
+<span class="material-symbols-outlined">badge</span>
+<span>تسجيل الدخول بالبطاقة الذكية</span>
+</button>
+</form>
+<!-- Footer -->
+<div class="mt-auto pt-lg text-center">
+<p class="font-label-sm text-label-sm text-outline">© 2024 جامعة الحسن الثاني بالدار البيضاء. جميع الحقوق محفوظة.</p>
+</div>
+</div>
+<!-- Image Section (Right side in RTL, Left side visually) -->
+<div class="hidden md:block md:w-1/2 lg:w-7/12 relative bg-surface-container-highest">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/80 to-transparent z-10 pointer-events-none mix-blend-multiply"></div>
+<img alt="صورة لمبنى أكاديمي" class="w-full h-full object-cover" data-alt="A grand, modern university building exterior with classical architectural elements infused with contemporary glass facades. The scene is bathed in golden hour sunlight, casting long, elegant shadows and highlighting the deep blue sky. The atmosphere is prestigious, academic, and authoritative, matching a high-end institutional light-mode aesthetic with a palette of deep blues, pristine whites, and subtle golden highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCry2N98FrTj_Mw1omHUAyuO866MqWrgOpDYQWhMwlNvX0-VZ1ONKosEOMcNeMpYiCYhokxKnj88xEQOZ44jF2rHmjEaZv5TZGwSvo4aaQuKAk4DQgNAgCm9BGhh1IpeKz6Sr2iQexkIbhB5nAlRzdc067g7SBaAQZQGzl1LE-n-fxmujFJw6T410oXd84wvvrFXmuv2bvRnoSewfIIRd8Oz4ZCtDu5g0NDnZCWo9WkQ8oeNNQ7h5y0vSwOueYZcmdTRpW0I5atqvM">
+<!-- Overlay Content -->
+<div class="absolute bottom-margin-desktop right-margin-desktop z-20 text-on-primary max-w-md glass-panel p-md rounded-xl">
+<div class="flex items-center gap-sm mb-sm">
+<span class="material-symbols-outlined text-[32px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<h3 class="font-arabic-headline text-[24px] text-on-primary m-0">التميز الأكاديمي</h3>
+</div>
+<p class="font-arabic-body text-body-md text-on-primary/90 m-0">
+                    نظام متكامل لإدارة الموارد الأكاديمية والبحثية، مصمم لتلبية معايير الجودة العالمية في التعليم العالي.
+                </p>
+</div>
+</div>
+</div>
+</body></html>

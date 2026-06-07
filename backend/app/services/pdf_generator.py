@@ -2,7 +2,7 @@ from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 from datetime import datetime
 
-template_dir = Path(__file__).parent.parent / "templates"
+template_dir = Path(__file__).parent.parent / "template"
 env = Environment(loader=FileSystemLoader(str(template_dir)))
 
 def generate_releve_html(student, print_number=None, serial=None,
