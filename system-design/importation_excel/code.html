@@ -1,0 +1,319 @@
+<!DOCTYPE html><html dir="ltr" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Importation Excel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Noto+Naskh+Arabic:wght@400;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#87898a",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#1f2223",
+                        "surface-tint": "#465f88",
+                        "primary": "#000a1e",
+                        "on-secondary-container": "#785a1a",
+                        "on-primary-container": "#708ab5",
+                        "tertiary-fixed-dim": "#c5c7c8",
+                        "on-tertiary-fixed": "#191c1d",
+                        "on-background": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "inverse-primary": "#aec7f6",
+                        "on-surface": "#1c1b1b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#44474e",
+                        "tertiary": "#090b0c",
+                        "primary-container": "#002147",
+                        "surface": "#fcf9f8",
+                        "secondary-container": "#fed488",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#001b3d",
+                        "inverse-surface": "#313030",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary": "#775a19",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "outline-variant": "#c4c6cf",
+                        "surface-dim": "#dcd9d9",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "secondary-fixed-dim": "#e9c176",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#e1e3e4",
+                        "outline": "#74777f",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-low": "#f6f3f2",
+                        "primary-fixed": "#d6e3ff",
+                        "on-secondary-fixed": "#261900",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#aec7f6",
+                        "on-error-container": "#93000a",
+                        "background": "#fcf9f8",
+                        "surface-container-high": "#eae7e7",
+                        "on-tertiary-fixed-variant": "#454748",
+                        "surface-container": "#f0eded",
+                        "on-error": "#ffffff"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        gutter: "24px",
+                        sm: "12px",
+                        md: "24px",
+                        base: "8px",
+                        "margin-mobile": "16px",
+                        xs: "4px",
+                        xl: "80px",
+                        lg: "48px",
+                        "margin-desktop": "64px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Noto Sans"],
+                        "arabic-body": ["Noto Naskh Arabic"],
+                        "arabic-headline": ["Noto Naskh Arabic"],
+                        "display-lg-mobile": ["Noto Sans"],
+                        "body-lg": ["Noto Sans"],
+                        "headline-md": ["Noto Sans"],
+                        "label-sm": ["Noto Sans"],
+                        "display-lg": ["Noto Sans"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "arabic-body": ["18px", { lineHeight: "32px", fontWeight: "400" }],
+                        "arabic-headline": ["26px", { lineHeight: "44px", fontWeight: "600" }],
+                        "display-lg-mobile": ["32px", { lineHeight: "40px", fontWeight: "700" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "label-sm": ["14px", { lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "500" }],
+                        "display-lg": ["48px", { lineHeight: "56px", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Glassmorphism effects */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        
+        .shadow-elevation-2 {
+            box-shadow: 0px 4px 20px rgba(0, 33, 71, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- SideNavBar Component -->
+<nav class="bg-surface-container-low fixed left-0 top-0 h-full w-64 rtl:right-0 rtl:left-auto border-r border-outline-variant/30 shadow-md flex flex-col py-md px-sm z-40">
+<!-- Header -->
+<div class="flex items-center gap-4 px-4 mb-8">
+<div class="w-12 h-12 rounded-lg bg-primary flex items-center justify-center text-on-primary overflow-hidden">
+<img alt="FSJES logo" class="w-full h-full object-cover" data-alt="A modern, abstract academic logo design featuring geometric crest elements in deep blue and gold tones, representing high-level education and institutional stability in a bright, modern setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAym6FgNjhWa4Aw8Pg0f2oTO0NVbrAozwVefH__iDUtqv8DHuo7uWmayF7h2uJcq9l_PEYg9eKMP_pE3tY6sk8bMlUqEP5TzpJAAKOKI4wRJEDl_jgsfdXtW1r1bjBw9eD8vLDD9AhXkyTBS__z_OUb0zpguCOgh-2ehZHs3-uXKxkZt3Onw8Qn1FyRNcoyR1lhYtzKcGzXmagVo2ljQd-ysJiqtLsa3RdldVBIW8uI3C0wbO_38DV90m7ASD8sN7ywx3nelAXl11E">
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary m-0">Administration</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant m-0">Academic Portal</p>
+</div>
+</div>
+<!-- Main Navigation Tabs -->
+<div class="flex flex-col gap-2 flex-grow">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 scale-98 active:scale-95 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<!-- Import (Active Tab) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold hover:bg-surface-variant transition-all duration-200 scale-98 active:scale-95 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+<span class="font-label-sm text-label-sm">Import</span>
+</a>
+<!-- Audit Logs -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 scale-98 active:scale-95 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-label-sm text-label-sm">Audit Logs</span>
+</a>
+<!-- Users -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 scale-98 active:scale-95 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-sm text-label-sm">Users</span>
+</a>
+</div>
+<!-- Footer Navigation Tabs -->
+<div class="flex flex-col gap-2 mt-auto border-t border-outline-variant/30 pt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 scale-98 active:scale-95 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 transition-all duration-200 scale-98 active:scale-95 cursor-pointer" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-sm text-label-sm">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-64 p-margin-desktop min-h-screen">
+<!-- Header Section -->
+<header class="mb-lg">
+<h2 class="font-display-lg text-display-lg text-primary mb-2">Importation Excel</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Téléchargez et synchronisez vos données académiques avec le système central.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Drag and Drop Zone -->
+<div class="lg:col-span-8 space-y-md">
+<div class="glass-panel shadow-elevation-2 rounded-xl p-8 border border-outline-variant/50 relative overflow-hidden group hover:border-secondary transition-colors duration-300">
+<div class="border-2 border-dashed border-outline/30 rounded-lg bg-surface-container-low/50 p-12 flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:bg-surface-container-low group-hover:border-primary/50 cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined" data-icon="cloud_upload" style="font-size: 32px;">cloud_upload</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Glissez-déposez votre fichier ici</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Formats supportés: .xlsx, .csv (Max: 50MB)</p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-sm text-label-sm hover:bg-primary/90 transition-colors shadow-sm">
+                                Parcourir les fichiers
+                            </button>
+<button class="border border-secondary bg-surface/50 text-secondary px-6 py-3 rounded-lg font-label-sm text-label-sm hover:bg-surface-variant transition-colors">
+                                Télécharger le modèle
+                            </button>
+</div>
+</div>
+</div>
+<!-- Active Progress Indicator (Simulated) -->
+<div class="glass-panel shadow-elevation-2 rounded-xl p-6 border border-outline-variant/50 flex items-center gap-4">
+<div class="w-12 h-12 bg-surface-variant rounded-lg flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-label-sm text-primary font-bold">inscriptions_automne_2023.xlsx</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">45%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-2 overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 45%;"></div>
+</div>
+</div>
+<button class="text-outline hover:text-error transition-colors shrink-0">
+<span class="material-symbols-outlined" data-icon="cancel">cancel</span>
+</button>
+</div>
+</div>
+<!-- Contextual Information -->
+<div class="lg:col-span-4 space-y-md">
+<div class="glass-panel shadow-elevation-2 rounded-xl p-6 border border-outline-variant/50">
+<h3 class="font-headline-md text-headline-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+                        Instructions
+                    </h3>
+<ul class="space-y-4 text-on-surface-variant font-body-md text-body-md">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5" data-icon="check_circle">check_circle</span>
+<span>Vérifiez que toutes les colonnes obligatoires sont renseignées.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5" data-icon="check_circle">check_circle</span>
+<span>Les dates doivent être au format JJ/MM/AAAA.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5" data-icon="check_circle">check_circle</span>
+<span>Les doublons seront automatiquement ignorés.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Recent Imports Table -->
+<div class="mt-lg">
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Importations Récentes</h3>
+<div class="glass-panel shadow-elevation-2 rounded-xl border border-outline-variant/50 overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead class="bg-primary text-on-primary font-label-sm text-label-sm">
+<tr>
+<th class="py-4 px-6 font-medium">Fichier</th>
+<th class="py-4 px-6 font-medium">Date</th>
+<th class="py-4 px-6 font-medium">Lignes</th>
+<th class="py-4 px-6 font-medium">Statut</th>
+<th class="py-4 px-6 font-medium">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30 text-on-surface font-body-md text-body-md">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-outline" data-icon="draft">draft</span>
+<span>notes_semestre1_2023.csv</span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">12 Oct 2023, 14:30</td>
+<td class="py-4 px-6">1,245</td>
+<td class="py-4 px-6">
+<span class="px-3 py-1 rounded-full text-xs font-bold bg-primary-container/20 text-primary-container border border-primary-container/30">Succès</span>
+</td>
+<td class="py-4 px-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-outline" data-icon="draft">draft</span>
+<span>etudiants_nouveaux_2023.xlsx</span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">10 Oct 2023, 09:15</td>
+<td class="py-4 px-6">342</td>
+<td class="py-4 px-6">
+<span class="px-3 py-1 rounded-full text-xs font-bold bg-error-container text-on-error-container border border-error/30">Erreur (3 lignes)</span>
+</td>
+<td class="py-4 px-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-outline" data-icon="draft">draft</span>
+<span>mise_a_jour_professeurs.csv</span>
+</td>
+<td class="py-4 px-6 text-on-surface-variant">08 Oct 2023, 16:45</td>
+<td class="py-4 px-6">89</td>
+<td class="py-4 px-6">
+<span class="px-3 py-1 rounded-full text-xs font-bold bg-primary-container/20 text-primary-container border border-primary-container/30">Succès</span>
+</td>
+<td class="py-4 px-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</body></html>

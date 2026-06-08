@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: fsjes_user
+      POSTGRES_PASSWORD: fsjes_password_dev
+      POSTGRES_DB: releves_fsjes
+    ports:
+      - "5434:5432"
+    volumes:
+      - fsjes_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fsjes_user -d releves_fsjes"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg2://fsjes_user:fsjes_password_dev@db:5432/releves_fsjes
+      JWT_SECRET_KEY: change-this-to-a-long-random-secret-key-in-production
+      JWT_ALGORITHM: HS256
+      JWT_ACCESS_TOKEN_EXPIRE_MINUTES: "480"
+      FRONTEND_URL: http://localhost:5173
+      APP_ENV: development
+      APP_HOST: 0.0.0.0
+      APP_PORT: "8000"
+      FIRST_ADMIN_EMAIL: admin@fsjes.ma
+      FIRST_ADMIN_PASSWORD: Admin@2026
+      FIRST_ADMIN_NAME: Administrateur FSJES
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  fsjes_db_data:

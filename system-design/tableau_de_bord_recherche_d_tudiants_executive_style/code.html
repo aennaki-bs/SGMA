@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="fr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tableau de Bord - Recherche d'Étudiants</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;family=Noto+Naskh+Arabic:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-secondary": "#ffffff",
+                "surface-tint": "#465f88",
+                "surface-variant": "#e5e2e1",
+                "surface-bright": "#fcf9f8",
+                "on-tertiary": "#ffffff",
+                "on-primary-container": "#708ab5",
+                "on-error-container": "#93000a",
+                "secondary-fixed": "#ffdea5",
+                "primary-fixed-dim": "#aec7f6",
+                "on-secondary-container": "#785a1a",
+                "inverse-on-surface": "#f3f0ef",
+                "tertiary-fixed-dim": "#c5c7c8",
+                "primary-fixed": "#d6e3ff",
+                "outline": "#74777f",
+                "surface-container-lowest": "#ffffff",
+                "on-surface-variant": "#44474e",
+                "tertiary": "#090b0c",
+                "on-background": "#1c1b1b",
+                "secondary": "#775a19",
+                "on-primary-fixed": "#001b3d",
+                "secondary-fixed-dim": "#e9c176",
+                "on-secondary-fixed": "#261900",
+                "primary": "#000a1e",
+                "on-surface": "#1c1b1b",
+                "inverse-surface": "#313030",
+                "error-container": "#ffdad6",
+                "surface-container": "#f0eded",
+                "on-tertiary-fixed": "#191c1d",
+                "outline-variant": "#c4c6cf",
+                "on-primary": "#ffffff",
+                "on-tertiary-container": "#87898a",
+                "surface-container-highest": "#e5e2e1",
+                "tertiary-container": "#1f2223",
+                "on-secondary-fixed-variant": "#5d4201",
+                "on-primary-fixed-variant": "#2d476f",
+                "surface-container-high": "#eae7e7",
+                "on-tertiary-fixed-variant": "#454748",
+                "background": "#fcf9f8",
+                "surface-container-low": "#f6f3f2",
+                "tertiary-fixed": "#e1e3e4",
+                "surface-dim": "#dcd9d9",
+                "primary-container": "#002147",
+                "inverse-primary": "#aec7f6",
+                "secondary-container": "#fed488",
+                "surface": "#fcf9f8",
+                "on-error": "#ffffff",
+                "error": "#ba1a1a"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "lg": "48px",
+                "xl": "80px",
+                "margin-desktop": "64px",
+                "gutter": "24px",
+                "md": "24px",
+                "xs": "4px",
+                "base": "8px",
+                "margin-mobile": "16px",
+                "sm": "12px"
+        },
+        "fontFamily": {
+                "display-lg": [
+                        "Noto Sans"
+                ],
+                "body-md": [
+                        "Noto Sans"
+                ],
+                "headline-md": [
+                        "Noto Sans"
+                ],
+                "display-lg-mobile": [
+                        "Noto Sans"
+                ],
+                "body-lg": [
+                        "Noto Sans"
+                ],
+                "label-sm": [
+                        "Noto Sans"
+                ],
+                "arabic-headline": [
+                        "Noto Naskh Arabic"
+                ],
+                "arabic-body": [
+                        "Noto Naskh Arabic"
+                ]
+        },
+        "fontSize": {
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                        }
+                ],
+                "arabic-headline": [
+                        "26px",
+                        {
+                                "lineHeight": "44px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "arabic-body": [
+                        "18px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .glass-panel {
+            background: rgba(252, 249, 248, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(196, 198, 207, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex antialiased LTR overflow-x-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-surface-container-low dark:bg-tertiary-container fixed left-0 top-0 h-full w-64 rtl:right-0 rtl:left-auto border-r border-outline-variant/30 dark:border-outline/20 shadow-md flex-col py-md px-sm z-40">
+<div class="mb-lg px-sm">
+<h1 class="font-headline-md text-headline-md text-primary-container truncate">Administration</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Academic Portal</p>
+</div>
+<ul class="flex flex-col gap-xs flex-1">
+<li>
+<a class="bg-primary-container text-on-primary-container dark:bg-secondary-container dark:text-on-secondary-container rounded-lg font-bold hover:bg-primary-fixed-dim dark:hover:bg-surface-container-highest transition-all duration-200 scale-98 active:scale-95 flex items-center gap-sm px-sm py-sm w-full" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant/50 hover:bg-surface-variant dark:hover:bg-surface-container-highest transition-all duration-200 scale-98 active:scale-95 flex items-center gap-sm px-sm py-sm rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">upload_file</span>
+<span class="font-label-sm text-label-sm">Import</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant/50 hover:bg-surface-variant dark:hover:bg-surface-container-highest transition-all duration-200 scale-98 active:scale-95 flex items-center gap-sm px-sm py-sm rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="font-label-sm text-label-sm">Audit Logs</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant/50 hover:bg-surface-variant dark:hover:bg-surface-container-highest transition-all duration-200 scale-98 active:scale-95 flex items-center gap-sm px-sm py-sm rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-sm text-label-sm">Users</span>
+</a>
+</li>
+</ul>
+<div class="mt-auto flex flex-col gap-xs border-t border-outline-variant/30 pt-sm">
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant/50 hover:bg-surface-variant dark:hover:bg-surface-container-highest transition-all duration-200 scale-98 active:scale-95 flex items-center gap-sm px-sm py-sm rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant/50 hover:bg-surface-variant dark:hover:bg-surface-container-highest transition-all duration-200 scale-98 active:scale-95 flex items-center gap-sm px-sm py-sm rounded-lg w-full" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-sm text-label-sm">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 relative min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface/70 dark:bg-surface-container-low/70 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-outline-variant/30 dark:border-outline/20 shadow-[0px_4px_20px_rgba(0,33,71,0.08)] flex justify-between items-center px-gutter h-20 md:w-[calc(100%-16rem)]">
+<div class="flex items-center gap-sm">
+<!-- Mobile Menu Button -->
+<button class="md:hidden p-xs text-on-surface-variant hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-headline-md text-headline-md font-bold text-primary-container dark:text-primary-fixed truncate">FSJES Ain Chock</div>
+</div>
+<!-- Search Bar placeholder for spacing if needed -->
+<div class="hidden sm:flex flex-1 max-w-md mx-md">
+<!-- Search bar content removed to match JSON definition indicating search_bar: 'on_left' but no explicit structure. Relying on page content for actual search. -->
+</div>
+<div class="flex items-center gap-md">
+<button class="text-primary-container dark:text-primary-fixed hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-200 cursor-pointer active:opacity-80 font-label-sm text-label-sm font-semibold">
+                    FR / AR
+                </button>
+<div class="flex items-center gap-sm">
+<button class="p-xs text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-xs text-on-surface-variant dark:text-on-tertiary-container hover:bg-surface-variant rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-variant border-2 border-outline-variant/50 overflow-hidden cursor-pointer flex items-center justify-center relative">
+<!-- Fallback if no image -->
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+<img alt="User profile administrator" class="absolute inset-0 w-full h-full object-cover" data-alt="A professional headshot of a diverse academic administrator in a brightly lit, modern office setting. The executive wears a crisp business casual outfit. The lighting is soft and flattering, creating a polished, high-end corporate aesthetic. The background is slightly out of focus, showing subtle hints of glass partitions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5xBUNjRRqStUxne3ar57w0WD42bCvvHTg4v2XQP7zWfEm7pGooCyR2AbaUTjojhoG7EqbYD6SdMxr2vGDE5Yg_8cgs0alXJj-X2Ss4WDlAuFSwicp9K-6f8OUZRyjHmvF64pt7DY7tKytUwkNbTs2gcyGeVL4gspmutI27XnhN8jFYhKsKyQ-7QTNE3AYSLoy0NmXJID0o1ri7M1je0ISKmaRFzG_gArscJJeCRRXZPBfbNExrxOKR9TlCJxtvrV3bv1Vz11Fd4k"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="pt-[104px] pb-lg px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto space-y-lg">
+<!-- Page Header -->
+<div>
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary-container mb-xs">Recherche d'Étudiants</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Recherchez et filtrez les dossiers étudiants dans la base de données académique. Utilisez les filtres avancés pour cibler votre recherche.</p>
+</div>
+<!-- Filter Glass Panel -->
+<section class="glass-panel rounded-lg shadow-[0px_4px_20px_rgba(0,33,71,0.08)] p-md">
+<form class="grid grid-cols-1 md:grid-cols-3 gap-md items-end">
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="student-name">Nom de l'étudiant</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-[40px] pr-sm py-sm bg-surface-container-lowest border-b border-outline-variant focus:border-secondary focus:ring-0 focus:rounded-lg focus:outline-none transition-all duration-300 font-body-md text-body-md text-on-surface bg-transparent" id="student-name" placeholder="Ex: Dupont, Jean" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="exam-number">Numéro d'examen</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">pin</span>
+<input class="w-full pl-[40px] pr-sm py-sm bg-surface-container-lowest border-b border-outline-variant focus:border-secondary focus:ring-0 focus:rounded-lg focus:outline-none transition-all duration-300 font-body-md text-body-md text-on-surface bg-transparent" id="exam-number" placeholder="Ex: 245-A89" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant" for="dob">Date de naissance</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">calendar_today</span>
+<input class="w-full pl-[40px] pr-sm py-sm bg-surface-container-lowest border-b border-outline-variant focus:border-secondary focus:ring-0 focus:rounded-lg focus:outline-none transition-all duration-300 font-body-md text-body-md text-on-surface bg-transparent" id="dob" type="date"/>
+</div>
+</div>
+<div class="md:col-span-3 flex justify-end gap-sm mt-sm">
+<button class="px-md py-sm rounded-lg border border-outline-variant text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container-low transition-colors duration-200 flex items-center gap-xs" type="reset">
+<span class="material-symbols-outlined text-[18px]">clear</span>
+                            Réinitialiser
+                        </button>
+<button class="px-md py-sm rounded-lg bg-primary-container text-on-primary-container font-label-sm text-label-sm shadow-md hover:bg-primary transition-colors duration-200 flex items-center gap-xs" type="submit">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">search</span>
+                            Rechercher
+                        </button>
+</div>
+</form>
+</section>
+<!-- Results Data Table -->
+<section class="bg-surface-container-lowest rounded-lg shadow-[0px_4px_20px_rgba(0,33,71,0.08)] border border-outline-variant/30 overflow-hidden">
+<div class="p-md border-b border-outline-variant/30 flex justify-between items-center bg-surface-bright">
+<h3 class="font-headline-md text-headline-md text-primary-container">Résultats de recherche</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-high px-sm py-xs rounded-full">3 étudiants trouvés</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-primary-container text-on-primary-container border-b border-outline-variant/50">
+<th class="p-sm font-label-sm text-label-sm font-semibold pl-md">Nom Complet</th>
+<th class="p-sm font-label-sm text-label-sm font-semibold">N° Examen</th>
+<th class="p-sm font-label-sm text-label-sm font-semibold">Date de Naissance</th>
+<th class="p-sm font-label-sm text-label-sm font-semibold">Filière</th>
+<th class="p-sm font-label-sm text-label-sm font-semibold">Statut Document</th>
+<th class="p-sm font-label-sm text-label-sm font-semibold text-right pr-md">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest hover:shadow-[inset_0px_0px_0px_1px_#775a19] transition-all duration-200 group bg-surface">
+<td class="p-sm pl-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-label-sm">EL</div>
+<div class="font-body-md text-body-md text-on-surface font-medium">El Amrani, Youssef</div>
+</div>
+</td>
+<td class="p-sm font-body-md text-body-md text-on-surface-variant">245-A89</td>
+<td class="p-sm font-body-md text-body-md text-on-surface-variant">12/05/2001</td>
+<td class="p-sm font-body-md text-body-md text-on-surface-variant">Droit Privé</td>
+<td class="p-sm">
+<span class="inline-flex items-center gap-xs px-xs py-[2px] rounded-full bg-[#e8f5e9] text-[#2e7d32] font-label-sm text-[12px] font-semibold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        Imprimé
+                                    </span>
+</td>
+<td class="p-sm text-right pr-md">
+<button class="p-xs text-on-surface-variant hover:text-primary-container transition-colors" title="Voir les détails">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest hover:shadow-[inset_0px_0px_0px_1px_#775a19] transition-all duration-200 group bg-surface">
+<td class="p-sm pl-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-label-sm">BN</div>
+<div class="font-body-md text-body-md text-on-surface font-medium">Bennani, Salma</div>
+</div>
+</td>
+<td class="p-sm font-body-md text-body-md text-on-surface-variant">245-B12</td>
+<td class="p-sm font-body-md text-body-md text-on-surface-variant">23/11/2002</td>
+<td class="p-sm font-body-md text-body-md text-on-surface-variant">Sciences Économiques</td>
+<td class="p-sm">
+<span class="inline-flex items-center gap-xs px-xs py-[2px] rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[12px] font-semibold">
+<span class="material-symbols-outlined text-[14px]">pending</span>
+                                        En attente
+                                    </span>
+</td>
+<td class="p-sm text-right pr-md">
+<button class="p-xs text-on-surface-variant hover:text-primary-container transition-colors" title="Voir les détails">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest hover:shadow-[inset_0px_0px_0px_1px_#775a19] transition-all duration-200 group bg-surface">
+<td class="p-sm pl-md">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-bold text-label-sm">CH</div>
+<div class="font-body-md text-body-md text-on-surface font-medium">Chraibi, Mehdi</div>
+</div>
+</td>
+<td class="p-sm font-body-md text-body-md text-on-surface-variant">245-C44</td>
+<td class="p-sm font-body-md text-body-md text-on-surface-variant">05/02/2000</td>
+<td class="p-sm font-body-md text-body-md text-on-surface-variant">Droit Public</td>
+<td class="p-sm">
+<span class="inline-flex items-center gap-xs px-xs py-[2px] rounded-full bg-[#e8f5e9] text-[#2e7d32] font-label-sm text-[12px] font-semibold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        Imprimé
+                                    </span>
+</td>
+<td class="p-sm text-right pr-md">
+<button class="p-xs text-on-surface-variant hover:text-primary-container transition-colors" title="Voir les détails">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-sm border-t border-outline-variant/30 flex justify-between items-center bg-surface-bright">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Affichage 1 à 3 sur 3</span>
+<div class="flex gap-xs">
+<button class="p-xs rounded border border-outline-variant text-outline-variant cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-xs rounded border border-outline-variant text-outline-variant cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>
