@@ -202,8 +202,3 @@ Le fichier doit contenir une ligne par étudiant avec les colonnes en arabe reco
 
 ---
 
-## Développement
-
-**Backend** : Ahmed Ennaki  
-**Frontend** : *(collègue — repo React séparé)*  
-**Institution** : FSJES Ain Chock, Université Hassan II de Casablanca
